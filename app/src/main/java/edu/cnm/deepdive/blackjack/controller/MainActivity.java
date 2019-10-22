@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
     Button addDeck = findViewById(R.id.start_round);
     addDeck.setOnClickListener((view) -> viewModel.startRound());
-    viewModel.startRound();
+//    viewModel.startRound();
   }
 
 }
