@@ -53,9 +53,8 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardHolder> {
     }
 
     private void bind(Card card) {
-      DeckOfCardsService service = DeckOfCardsService.getInstance();
       imageView.setContentDescription(card.toString());
-      Picasso.get().load(service.getImageUrl(context, card).toString()).into(imageView);
+      Picasso.get().load(DeckOfCardsService.getImageUrl(card)).into(imageView);
     }
 
   }
