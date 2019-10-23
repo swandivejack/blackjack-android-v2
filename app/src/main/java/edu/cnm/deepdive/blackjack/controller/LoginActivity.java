@@ -19,7 +19,8 @@ public class LoginActivity extends AppCompatActivity {
     service = GoogleSignInService.getInstance();
     service.refresh()
         .addOnSuccessListener((account) -> {
-          switchToMain();})
+          switchToMain();
+        })
         .addOnFailureListener((ex) -> {
           setContentView(R.layout.activity_login);
           findViewById(R.id.sign_in).setOnClickListener((view) -> {
@@ -45,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     }
   }
 
-  private void switchToMain(){
+  private void switchToMain() {
     Intent intent = new Intent(this, MainActivity.class);
     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
     startActivity(intent);

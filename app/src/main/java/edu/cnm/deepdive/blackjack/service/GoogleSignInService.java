@@ -3,7 +3,6 @@ package edu.cnm.deepdive.blackjack.service;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -48,27 +47,29 @@ public class GoogleSignInService {
     return exception;
   }
 
-  public Task<GoogleSignInAccount> refresh(){
+  public Task<GoogleSignInAccount> refresh() {
     return client.silentSignIn()
         .addOnSuccessListener(this::update)
         .addOnFailureListener(this::update);
   }
 
-  private void update(GoogleSignInAccount account){
+  private void update(GoogleSignInAccount account) {
     this.account.setValue(account);
     this.exception.setValue(null);
   }
-  private void update(Exception ex){
+
+  private void update(Exception ex) {
     account.setValue(null);
     this.exception.setValue(ex);
   }
-  public void startSignIn(Activity activity, int requestCode){
+
+  public void startSignIn(Activity activity, int requestCode) {
     update(((GoogleSignInAccount) null));
     Intent intent = client.getSignInIntent();
     activity.startActivityForResult(intent, requestCode);
   }
 
-  public Task<GoogleSignInAccount> completeSignIn(Intent data){
+  public Task<GoogleSignInAccount> completeSignIn(Intent data) {
     Task<GoogleSignInAccount> task = null;
     try {
       task = GoogleSignIn.getSignedInAccountFromIntent(data);
@@ -79,9 +80,11 @@ public class GoogleSignInService {
     return task;
   }
 
-  public Task<Void> signOut(){
+  public Task<Void> signOut() {
     return client.signOut()
-        .addOnCompleteListener((account)->{update((GoogleSignInAccount) null);});
+        .addOnCompleteListener((account) -> {
+          update((GoogleSignInAccount) null);
+        });
   }
 
   private static class InstanceHolder {
