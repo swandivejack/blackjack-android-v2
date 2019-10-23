@@ -10,8 +10,8 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField "String", "BASE_URL",'"https://deckofcardsapi.com/"'
-        buildConfigField "String", "STATIC_IMAGE_PATTERN",'"%1$sstatic/img/%2$s.png"'
+        buildConfigField "String", "BASE_URL", '"https://deckofcardsapi.com/"'
+        buildConfigField "String", "STATIC_IMAGE_PATTERN", '"%1$sstatic/img/%2$s.png"'
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
@@ -44,6 +44,8 @@ dependencies {
     def room_version = "2.2.0"
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    implementation 'com.google.android.gms:play-services-auth:17.0.0'
 
 
     implementation 'com.google.android.material:material:1.0.0'
